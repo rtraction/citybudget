@@ -1,0 +1,21 @@
+London Ontario's City Budget API
+
+== Development Setup ==
+
+Clone the project to a web-accessible folder.
+
+	git clone git@github.com:rtraction/citybudget.git citybudgetapi
+
+Edit system/application/config/config.php and put your URL into $config['base_url'].
+
+Configure your database settings in system/application/config/database.php.
+
+Run citybudget.sql into your database.
+
+That's it! Most important files are in
+	system/application/controllers/
+	system/application/models/
+	system/application/views/
+
+Cheers!
+gav
