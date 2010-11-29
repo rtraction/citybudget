@@ -12,10 +12,15 @@ Configure your database settings in system/application/config/database.php.
 
 Run citybudget.sql into your database.
 
-That's it! Most important files are in
+That's it! Test your setup by navigating to the site, for example:
+
+	http://localhost/citybudgetapi/api/organizations/
+
+
+Most important files are in
 	system/application/controllers/
 	system/application/models/
 	system/application/views/
 
-Cheers!
+Code Strong,
 gav
