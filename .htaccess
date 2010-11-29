@@ -1,0 +1,4 @@
+﻿#remove index.php from URL
+RewriteEngine on
+RewriteCond $1 !^(index\.php|cgi-bin|images|robots\.txt)
+RewriteRule ^(.*)$ index.php?/$1 [L]

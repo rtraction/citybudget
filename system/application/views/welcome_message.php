@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Welcome to CodeIgniter</title>
+<title>London Ontario City Budget API</title>
 
 <style type="text/css">
 
@@ -43,17 +43,14 @@ code {
 </head>
 <body>
 
-<h1>Welcome to CodeIgniter!</h1>
+<h1>Welcome to the City Budget API!</h1>
 
-<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+<p>This page will document some ways to use the API.</p>
 
-<p>If you would like to edit this page you'll find it located at:</p>
-<code>system/application/views/welcome_message.php</code>
+<p>URL Request examples can go in code tags, like so:</p>
+<code>http://example.com/api/list</code>
 
-<p>The corresponding controller for this page is found at:</p>
-<code>system/application/controllers/welcome.php</code>
-
-<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+<p>If you have any questions feel free to contact <a href="mailto:gavin.blair+citybudget@rtraction.com">Gavin Blair</a>.</p>
 
 
 <p><br />Page rendered in {elapsed_time} seconds</p>
