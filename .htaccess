@@ -1,4 +1,8 @@
-﻿#remove index.php from URL
+# remember to change the path to index.php if your CI installation is not in the
+# root of your site and rename this file to '.htaccess'
+
 RewriteEngine on
-RewriteCond $1 !^(index\.php|cgi-bin|images|robots\.txt)
-RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L]
+

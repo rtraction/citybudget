@@ -10,7 +10,13 @@ Edit system/application/config/config.php and put your URL into $config['base_ur
 
 Configure your database settings in system/application/config/database.php.
 
+Ignore these two files when pushing & committing changes 
+	
+	git update-index --assume-unchanged system/application/config/config.php
+	git update-index --assume-unchanged system/application/config/database.php
+
 Run citybudget.sql into your database.
+
 
 That's it! Test your setup by navigating to the site, for example:
 

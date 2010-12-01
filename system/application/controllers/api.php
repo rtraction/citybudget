@@ -15,7 +15,7 @@ class Api extends Controller {
 	function organizations($format = 'json'){
 		$data = array();
 		
-		$data['data'] = $this->Budget->list_organizations();
+		$data['data'] = $this->Budget->get_organizations();
 		
 		$data['format'] = $format;
 		$this->load->view('api', $data);
