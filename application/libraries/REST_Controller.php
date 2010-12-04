@@ -809,7 +809,7 @@ class REST_Controller extends Controller
     // Encode as JSON
     private function _format_json($data = array())
     {
-    	return 'abc('.json_encode($data).')';
+    	echo 'abc('.json_encode($data).')';
     }
 
     // Encode as Serialized array
