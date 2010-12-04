@@ -1,5 +1,5 @@
 <p>Don't show this page to the general public!</p>
-<form enctype="multipart/form-data" action="/import" method="POST">
+<form enctype="multipart/form-data" action="<?php echo site_url('/import'); ?>" method="POST">
 <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 Choose a CSV to upload: <br /><input name="csv_file" type="file" /><br />
 <input name="upload" type="submit" value="Upload File" />
