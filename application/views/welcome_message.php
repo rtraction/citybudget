@@ -37,6 +37,17 @@ code {
  display: block;
  margin: 14px 0 14px 0;
  padding: 12px 10px 12px 10px;
+ white-space:pre;
+}
+code em {
+	color: #0AC92B;
+}
+code a {
+	text-decoration:none;
+}
+
+code a:focus, code a:hover{
+	text-decoration:underline;
 }
 
 </style>
@@ -51,24 +62,40 @@ code {
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
 
 <p>Get the budget for a specific organization/department for a year:</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/701'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010/org/701</strong></a></code>
+<code><a href="<?php echo site_url('api/budget/year/2010/org/803'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010/org/803</strong></a></code>
 
-<p>In the last example, you passed an organization id to the api. This probably makes you want a list of organization ids. That's here:</p>
-<code><a href="<?php echo site_url('api/list/type/orgs'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/orgs</strong></a></code>
+<p>In the last example, you passed an organization id to the api. This probably makes you want a list of organization ids. These are the lists supported:</p>
+<code><em>//List all organizations</em>
+<a href="<?php echo site_url('api/list/type/orgs'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/orgs</strong></a>
 
-<p>You can also list the years and if we currently have approved and/or actual numbers:</p>
-<code><a href="<?php echo site_url('api/list/type/years'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/years</strong></a></code>
+<em>//List all currently available years and if we currently have approved and/or actual numbers:</em>
+<a href="<?php echo site_url('api/list/type/years'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/years</strong></a></code>
 
 <p>BUT WHAT ABOUT JSON!? I hear ya! Just add /format/json to any api request.</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/701/format/json'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/701/<strong>format/json</strong></a></code>
-<p>If you want to use JSON, you can include the javascript file we have on the server to pull the JSON directly in your javascript.</p>
-<code>$.ajax({
-		  url:&#39;http://budget.opendatalondon.ca/index.php/api/budget/year/2010/format/json&#39;,
-		  type:&#39;GET&#39;,
-		  data:&#39;callback=abc&#39;,
-		  dataType:&#39;jsonp&#39;,
-		  success: abc
-		});</code>
+<code><em>//regular JSON</em>
+<a href="<?php echo site_url('api/budget/year/2010/org/803/format/json'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/803/<strong>format/json</strong></a>
+
+<em>//JSONP friendly</em>
+<a href="<?php echo site_url('api/budget/year/2010/org/803/format/jsonp'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/803/<strong>format/jsonp</strong></a>
+</code>
+<p>Want to pull the JSON info dynamically? Something like this should work for you:</p>
+<code><em>//get the json from the api</em>
+$.ajax({
+	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/json');?>&#39;,
+	type:&#39;GET&#39;,
+	data:&#39;callback=<strong>abc</strong>&#39;,
+	dataType:&#39;jsonp&#39;,
+	success: abc
+});
+
+<em>//the JSON is passed as a parameter to your callback function</em>
+function <strong>abc</strong>(budget){<em>
+	/*
+	 * your functionality
+	 *
+	 */</em>
+}
+</code>
 
 
 <p>If you have any questions feel free to contact <a href="mailto:gavin.blair+citybudget@rtraction.com">Gavin Blair</a>.</p>
