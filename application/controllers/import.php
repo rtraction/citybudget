@@ -90,16 +90,44 @@ class Import extends Controller {
 				$budgets = array();
 					
 				/*2008 actual*/
-					$budgets[]=array('year'=>2008, 'type'=>'actual', 'amount'=>(int)trim($budget[4][$key])*1000);
+					$amount = trim($budget[4][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2008, 'type'=>'actual', 'amount'=>$amount);
 				
 				/*2009 approved*/
-					$budgets[]=array('year'=>2009, 'type'=>'approved', 'amount'=>(int)trim($budget[5][$key])*1000);
+					$amount = trim($budget[5][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2009, 'type'=>'approved', 'amount'=>$amount);
 					
 				/*2009 revised */
-					$budgets[]=array('year'=>2009, 'type'=>'actual', 'amount'=>(int)trim($budget[6][$key])*1000);
+					$amount = trim($budget[6][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2009, 'type'=>'actual', 'amount'=>$amount);
 
 				/*2010 approved*/
-					$budgets[]=array('year'=>2010, 'type'=>'approved', 'amount'=>(int)trim($budget[7][$key])*1000);
+					$amount = trim($budget[7][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2010, 'type'=>'approved', 'amount'=>$amount);
 
 				/*INSERT INTO DB*/
 				foreach($budgets as $bud){

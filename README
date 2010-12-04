@@ -32,3 +32,16 @@ http://net.tutsplus.com/tutorials/php/working-with-restful-services-in-codeignit
 
 Code Strong,
 Open Data London
+
+
+== What is this project? ==
+
+The budget data for London is currently available on the city website in PDF form. 
+
+This is not a very useful format for creating visualizations and applications.
+
+This project takes the city budget, that has been manually entered into a spreadsheet by volunteers, and imports it into a database. Now the data can be accessed programmatically and displayed with this API.
+
+Check it out in action at http://budget.opendatalondon.com/ 
+
+We're hoping to have some cool apps implementing this software by the end of Open Data Hackathon Day :)
