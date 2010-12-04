@@ -9,7 +9,7 @@ function readJSON(url, callback) {
 	  dataType:'json',
 	  success: function(data) {
 		alert(data);
-	  }
+	  },
 	  failure: function(msg) {
 		var a = 0;
 	  }
