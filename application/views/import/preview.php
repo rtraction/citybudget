@@ -5,7 +5,7 @@
 </style>
 
 <p>Does this look right?</p>
-<form method="post" action="/import">
+<form method="post" action="<?php echo site_url('/import'); ?>">
 	<table>
 		<tr>
 		<?php
