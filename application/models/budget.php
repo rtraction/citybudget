@@ -9,9 +9,9 @@ class Budget extends Model {
 	
 	function get_budget($year, $organization = 0){
 		if($organization > 0) {
-			$query = $this->db->query("SELECT * FROM  amounts LEFT JOIN organizations ON (amounts.organization_id = organizations.id) WHERE year = $year AND organization_id = $organization");
+			$query = $this->db->query("SELECT * FROM amounts LEFT JOIN organizations ON (amounts.organization_id = organizations.id) WHERE year = $year AND organization_id = $organization ORDER BY organizations.id");
 		} else {
-			$query = $this->db->query("SELECT * FROM  amounts LEFT JOIN organizations ON (amounts.organization_id = organizations.id) WHERE year = $year");
+			$query = $this->db->query("SELECT * FROM amounts LEFT JOIN organizations ON (amounts.organization_id = organizations.id) WHERE year = $year ORDER BY organizations.id");
 		}
 		if($query->num_rows() > 0) {
 			$return = array();
