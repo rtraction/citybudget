@@ -51,16 +51,21 @@ code {
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
 
 <p>Get the budget for a specific organization/department for a year:</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/662'); ?>"><?php echo site_url(); ?>api/budget/<strong>year/2010/org/662</strong></a></code>
+<code><a href="<?php echo site_url('api/budget/year/2010/org/701'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010/org/701</strong></a></code>
 
 <p>In the last example, you passed an organization id to the api. This probably makes you want a list of organization ids. That's here:</p>
-<code><a href="<?php echo site_url('api/list/type/orgs'); ?>"><?php echo site_url(); ?>api/<strong>list/type/orgs</strong></a></code>
+<code><a href="<?php echo site_url('api/list/type/orgs'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/orgs</strong></a></code>
 
 <p>You can also list the years and if we currently have approved and/or actual numbers:</p>
-<code><a href="<?php echo site_url('api/list/type/years'); ?>"><?php echo site_url(); ?>api/<strong>list/type/years</strong></a></code>
+<code><a href="<?php echo site_url('api/list/type/years'); ?>"><?php echo site_url(); ?>/api/<strong>list/type/years</strong></a></code>
 
 <p>BUT WHAT ABOUT JSON!? I hear ya! Just add /format/json to any api request.</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/662/format/json'); ?>"><?php echo site_url(); ?>api/budget/year/2010/org/662/<strong>format/json</strong></a></code>
+<code><a href="<?php echo site_url('api/budget/year/2010/org/701/format/json'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/701/<strong>format/json</strong></a></code>
+<p>If you want to use JSON, you can include the javascript file we have on the server to pull the JSON directly in your javascript.</p>
+<code>&lt;script type=&quot;text/javascript&quot; src=&quot;<?php echo base_url(); ?>readJSON.js&quot;&gt;&lt;/script&gt;
+<br /><br />//Then you can call the API with a call like this:
+<br />var budget = readJSON(&#39;<?php echo site_url(); ?>/api/budget/year/2010/format/json&#39;);
+</code>
 
 
 <p>If you have any questions feel free to contact <a href="mailto:gavin.blair+citybudget@rtraction.com">Gavin Blair</a>.</p>

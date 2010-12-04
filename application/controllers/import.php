@@ -56,7 +56,15 @@ class Import extends Controller {
 			
 		}else if(isset($_POST['approve'])){
 			$budget = $_POST['budget'];
-			foreach($budget[0] as $key => $time){
+			/*
+			print '<pre>';
+			print_r($budget); die;*/
+			foreach($budget[1] as $key => $time){
+				if(trim($budget[1][$key]) == ''){
+					print_r($budget);
+					die('here');
+					continue;
+				}
 				/*ORGANIZATION ID*/				
 					//get it if the org exists
 					$org = $this->Budget->get_organization_id($budget[1][$key]);
