@@ -10,9 +10,20 @@ function readJSON(url) {
 	}
 		
 	try {		
-		xhr.open("GET", url, false);
+		xhr.open("GET", url, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if(xhr.status  == 200) {
+					return xhr.responseText;
+				}
+				else {
+					return "failed";
+				}
+			}
+		}
 		xhr.send(null);
-		return xhr.responseXML;
+		
+		var a = 0;
 	}
 	catch(err) {
 		return "failed";
