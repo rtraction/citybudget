@@ -1,9 +1,20 @@
 function readJSON(url) {	 
-	var http = getHTTPObject();
-	http.open("GET", url, true);
-	http.onreadystatechange = function() {
-		if (http.readyState == 4) {
-			return http.responseText;
+	try {
+	  xhr = new ActiveXObject("Microsoft.XMLHTTP");    // Trying Internet Explorer 
+	}
+	catch(e)    // Failed 
+	{
+	  xhr = new XMLHttpRequest();    // Other browsers.
+	}
+
+	xhr.open("GET", url, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4) {
+			if(xhr.status  == 200) {
+				return xhr.responseText;
+			}
+			else {
+			}
 		}
 	}
 }
