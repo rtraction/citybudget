@@ -62,10 +62,13 @@ code {
 <p>BUT WHAT ABOUT JSON!? I hear ya! Just add /format/json to any api request.</p>
 <code><a href="<?php echo site_url('api/budget/year/2010/org/701/format/json'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/701/<strong>format/json</strong></a></code>
 <p>If you want to use JSON, you can include the javascript file we have on the server to pull the JSON directly in your javascript.</p>
-<code>&lt;script type=&quot;text/javascript&quot; src=&quot;<?php echo base_url(); ?>readJSON.js&quot;&gt;&lt;/script&gt;
-<br /><br />//Then you can call the API with a call like this:
-<br />var budget = readJSON(&#39;<?php echo site_url(); ?>/api/budget/year/2010/format/json&#39;);
-</code>
+<code>$.ajax({
+		  url:&#39;http://budget.opendatalondon.ca/index.php/api/budget/year/2010/format/json&#39;,
+		  type:&#39;GET&#39;,
+		  data:&#39;callback=abc&#39;,
+		  dataType:&#39;jsonp&#39;,
+		  success: abc
+		});</code>
 
 
 <p>If you have any questions feel free to contact <a href="mailto:gavin.blair+citybudget@rtraction.com">Gavin Blair</a>.</p>
