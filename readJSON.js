@@ -22,6 +22,7 @@ function readJSON(url) {
 		
 	try {		
 		xhr.open("GET", url, false);
+		xhr.send(null);
 		
 		var a = 0;
 	}
