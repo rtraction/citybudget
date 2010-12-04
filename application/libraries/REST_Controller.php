@@ -811,6 +811,12 @@ class REST_Controller extends Controller
     {
     	return $this->get('callback').'('.json_encode($data).')';
     }
+	
+	// Encode as JSONP
+    private function _format_jsonp($data = array())
+    {
+    	return $this->get('callback').'('.json_encode($data).')';
+    }
 
     // Encode as Serialized array
     private function _format_serialize($data = array())
