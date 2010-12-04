@@ -1,6 +1,6 @@
 var xhr;
 
-function readJSON(url) {	 
+function readJSON(url, callback) {	 
 	try {
 	  xhr = new ActiveXObject("Microsoft.XMLHTTP");    // Trying Internet Explorer 
 	}
@@ -11,16 +11,7 @@ function readJSON(url) {
 		
 	try {		
 		xhr.open("GET", url, true);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				if(xhr.status  == 200) {
-					return xhr.responseText;
-				}
-				else {
-					return "failed";
-				}
-			}
-		}
+		xhr.onreadystatechange = callback;
 		xhr.send(null);
 		
 		var a = 0;
