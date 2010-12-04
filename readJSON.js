@@ -11,19 +11,8 @@ function readJSON(url) {
 		
 	try {		
 		xhr.open("GET", url, false);
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4) {
-				if(xhr.status  == 200) {
-					return xhr.responseText;
-				}
-				else {
-					return "failed";
-				}
-			}
-		}
 		xhr.send(null);
-		
-		var a = 0;
+		return xhr.responseXML;
 	}
 	catch(err) {
 		return "failed";
