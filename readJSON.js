@@ -6,11 +6,11 @@ function readJSON(url, callback) {
 	$.ajax({
 	  url: url,
 	  type:'GET',
-	  dataType:'JSONP',
+	  dataType:'text',
 	  success: function(data) {
 		alert(data);
 	  },
-	  failure: function(msg) {
+	  error: function(msg) {
 		var a = 0;
 	  }
 	});
