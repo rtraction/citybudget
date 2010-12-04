@@ -13,8 +13,6 @@ function readJSON(url, callback) {
 		xhr.open("GET", url, true);
 		xhr.onreadystatechange = callback;
 		xhr.send(null);
-		
-		var a = 0;
 	}
 	catch(err) {
 		return "failed";
