@@ -8,7 +8,7 @@ function readJSON(url) {
 	}
 
 	try {
-		xhr.open("GET", url, true);
+		xhr.open("GET", url, false);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
 				if(xhr.status  == 200) {
