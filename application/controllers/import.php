@@ -53,12 +53,81 @@ class Import extends Controller {
 			$this->load->view('import/preview', $data);
 			
 		}else if(isset($_POST['approve'])){
+			$budget = $_POST['budget'];
+			$uses = array();
+			foreach($budget[0] as $key => $time){
+				/*ORGANIZATION ID*/				
+					//get it if the org exists
+					$org = $this->Budget->get_organization_id($budget[1][$key]);
+					if(is_int($org)){
+						$org = $org['$budget[1][$key]'];
+					//set it if it's a new org	
+					}else{
+						$org = $this->Budget->set_organization_id($budget[1][$key]);
+					}
+				
+				/*GROUPING*/
+					if($budget[2][$key] != '' AND  $budget[2][$key] != '- none -'){
+						$group = trim($budget[2][$key]);
+					}else{
+						$group = '';
+					}
+				
+				/*PROGRAM*/
+					$program = trim($budget[3][$key]);
+
+				$budgets = array();
+					
+				/*2008 actual*/
+					$budget = $this->Budget->get_budget_id($data['th'][4]);
+					//get the budget id, if this one exists
+					if(is_int($budget)){
+						$budgets[$budget] = (int)trim($budget[4][$key]);
+					//set it if it's a new budget	
+					}else{
+						$budget[$this->Budget->set_budget_id($data['th'][4])] = (int)trim($budget[4][$key]);
+					}
+				
+				/*2009 approved*/
+					$budget = $this->Budget->get_budget_id($data['th'][5]);
+					//get the budget id, if this one exists
+					if(is_int($budget)){
+						$budgets[$budget] = (int)trim($budget[5][$key]);
+					//set it if it's a new budget	
+					}else{
+						$budget[$this->Budget->set_budget_id($data['th'][5])] = (int)trim($budget[5][$key]);
+					}
+					
+				/*2009 revised */
+					$budget = $this->Budget->get_budget_id($data['th'][6]);
+					//get the budget id, if this one exists
+					if(is_int($budget)){
+						$budgets[$budget] = (int)trim($budget[6][$key]);
+					//set it if it's a new budget	
+					}else{
+						$budget[$this->Budget->set_budget_id($data['th'][6])] = (int)trim($budget[6][$key]);
+					}
+
+				/*2010 approved*/
+					$budget = $this->Budget->get_budget_id($data['th'][7]);
+					//get the budget id, if this one exists
+					if(is_int($budget)){
+						$budgets[$budget] = (int)trim($budget[7][$key]);
+					//set it if it's a new budget	
+					}else{
+						$budget[$this->Budget->set_budget_id($data['th'][7])] = (int)trim($budget[7][$key]);
+					}
+				/*INSERT INTO DB*/
+				foreach($budgets as $budget_id=>$amount){
+					$this->Budget->set_use_id($program, $amount, $group, $org, $budget_id);
+				}		
+			}
+			
 			print '<pre>';
 			print_r($_POST);
 			
 			
-			$orgs = $this->Budget->list_organizations();
-			$budgets = $this->Budget->list_budgets();	
+
 			
 			print_r($orgs);
 			print_r($budgets);
