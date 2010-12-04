@@ -4,7 +4,7 @@ London Ontario's City Budget API
 
 Clone the project to a web-accessible folder.
 
-	git clone git@github.com:rtraction/citybudget.git citybudgetapi
+	git clone git://github.com/rtraction/citybudget.git citybudgetapi
 
 Edit application/config/config.php and put your URL into $config['base_url'].
 
