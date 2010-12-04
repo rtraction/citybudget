@@ -22,6 +22,8 @@ function readJSON(url) {
 		
 	try {		
 		xhr.open("GET", url, false);
+		
+		var a = 0;
 	}
 	catch(err) {
 		return "failed";
