@@ -8,20 +8,19 @@ function readJSON(url) {
 	{
 	  xhr = new XMLHttpRequest();    // Other browsers.
 	}
-
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			if(xhr.status  == 200) {
-				return xhr.responseText;
-			}
-			else {
-				return "failed";
-			}
-		}
-	}
 		
 	try {		
 		xhr.open("GET", url, false);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if(xhr.status  == 200) {
+					return xhr.responseText;
+				}
+				else {
+					return "failed";
+				}
+			}
+		}
 		xhr.send(null);
 		
 		var a = 0;
