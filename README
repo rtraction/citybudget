@@ -6,17 +6,16 @@ Clone the project to a web-accessible folder.
 
 	git clone git://github.com/rtraction/citybudget.git citybudgetapi
 
+Copy application/config/config.sample.php to application/config/config.php.
 Edit application/config/config.php and put your URL into $config['base_url'].
 
+Copy application/config/database.sample.php to application/config/database.php.
 Configure your database settings in application/config/database.php.
 
-Ignore these two files when pushing & committing changes 
-	
-	git update-index --assume-unchanged application/config/config.php
-	git update-index --assume-unchanged application/config/database.php
+Note: If you are going into a production environment you should not make 
+application/controllers/import.php publicly available.
 
 Run citybudget.sql into your database.
-
 
 That's it! Test your setup by navigating to the site, for example:
 
@@ -27,6 +26,9 @@ Most important files are in
 	application/controllers/
 	application/models/
 	application/views/
+	
+For more information about working with RESTful services in Code Igniter, check out
+http://net.tutsplus.com/tutorials/php/working-with-restful-services-in-codeigniter-2/
 
 Code Strong,
-gav
+Open Data London
