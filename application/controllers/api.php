@@ -18,49 +18,49 @@ class Api extends REST_Controller {
 	 *     -...
 	 *
 	 */
-/*
-function budget($year = 0, $org = 0, $program = '', $format = 'json'){
-		$data['format'] = $format;
-		//$year is required.
-		if((int)$year == 0){
-			//load a view that explains how to use this API call
-			$this->index();
-		}else{
-			$data['data'] = $this->Budget->get_budget($year, $org);
-			$this->load->view('api', $data);
-		}
-	}*/
 	
 	function budget_get(){
 		if(!$this->get('year')){
-        	$this->response(array('error' => 'You must chose a year.'), 400);
+        	$this->response(array('error' => 'You must choose a year or an organization.'), 400);
         	
         }else{
-	        
-        	$budget = $this->Budget->get_budget($this->get('year'));
+	        if($this->get('org')){
+	        	$budget = $this->Budget->get_budget((int)$this->get('year'), (int)$this->get('org'));
+	        }else{
+	        	$budget = $this->Budget->get_budget((int)$this->get('year'));
+	        }
 	    	
 	        if($budget){
 	            $this->response($budget, 200); // 200 being the HTTP response code
 	        }else{
-	            $this->response(array('error' => 'User could not be found'), 404);
+	            $this->response(array('error' => 'Budget year could not be found'), 404);
 	        }
         }
-    }/*
+    }
+
     function list_get(){
-		if(!$this->get('year')){
-        	$this->response(array('error' => 'You must chose a year.'), 400);
+		if(!$this->get('type')){
+        	$this->response(array('error' => 'You must choose a list type.'), 400);
         	
         }else{
 	        
-        	$list = $this->Budget->get_budget($this->get('year'));
-	    	
-	        if($budget){
-	            $this->response($budget, 200); // 200 being the HTTP response code
+	        switch($this->get('type')){
+	        	case 'orgs':
+	        	case 'org':
+	        	case 'organizations':
+	        		$list = $this->Budget->get_organizations();
+	        		break;
+	        	default:
+	        		$list = null;	        		
+	        }
+	        
+        	if($list){
+	            $this->response($list, 200); // 200 being the HTTP response code
 	        }else{
-	            $this->response(array('error' => 'User could not be found'), 404);
+	            $this->response(array('error' => 'List could not be found'), 404);
 	        }
         }    	
-    }*/
+    }
 }
 
 /* End of file welcome.php */
