@@ -1,17 +1,17 @@
 function readJSON(url, callback) {	 
-	$.getJSON(url, function(json) {
+	/*$.getJSON(url, function(json) {
 		callback(json);
-	});
+	});*/
 	
-	/*$.ajax({
+	$.ajax({
 	  url: url,
 	  type:'GET',
-	  dataType:'JSON',
+	  dataType:'JSONP',
 	  success: function(data) {
 		alert(data);
 	  },
 	  error: function(msg) {
 		var a = 0;
 	  }
-	});*/
+	});
 }
