@@ -52,6 +52,19 @@ class Budget extends Model {
 		}
 	}
 	
+	function set_amount($program, $amount, $grouping, $org, $year, $type){
+		return $this->db->insert('amounts', array(
+			'program'=>$program,
+			'amount'=>$amount,
+			'grouping'=>$grouping,
+			'organization_id'=>$org,
+			'year'=>$year,
+			'type'=>$type
+			));
+		return $this->db->insert_id();		
+
+	}
+	
 	function get_organizations() {
 		$query = $this->db->query("select distinct year, o.id, name from amounts a left JOIN organizations o ON (organization_id = o.id);");
 		if($query->num_rows() > 0) {
@@ -70,9 +83,21 @@ class Budget extends Model {
 		return false;
 	}
 	
+	function get_organization_id($name){
+		$name = addslashes(trim($name));
+		$query = $this->db->query("SELECT id FROM organizations WHERE name = '{$name}'");
+		if($query->num_rows() > 0){
+			$id = $query->result();
+			return $id[0]->id;
+		}else{
+			return false;
+		}
+	}
+	
 	/*Not yet tested*/
 	function set_organization($name){
-		return $this->db->insert_id('organizations', array('name'=>$name));
+		$this->db->insert('organizations', array('name'=>$name));
+		return $this->db->insert_id();		
 	}
 	
 }
