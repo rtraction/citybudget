@@ -75,7 +75,7 @@ class Budget extends Model {
 	}
 	
 	function get_organizations() {
-		$query = $this->db->query("SELECT DISTINCT year, o.id, name from amounts a 
+		$query = $this->db->query("SELECT DISTINCT year, o.id as id, name from amounts a 
 								   LEFT JOIN organizations o 
 								   ON (organization_id = o.id);");
 		if($query->num_rows() > 0) {
@@ -84,6 +84,7 @@ class Budget extends Model {
 				if(!isset($return[$row->id])){
 					$return[$row->id] = array(
 						'name'=>$row->name,
+						'id'=>$row->id,
 						'years'=>array()
 					);
 				}	
