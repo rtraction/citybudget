@@ -1,9 +1,9 @@
 function readJSON(url, callback) {	 
-	/*$.getJSON(url, function(json) {
+	$.getJSON(url, function(json) {
 		callback(json);
-	});*/
+	});
 	
-	$.ajax({
+	/*$.ajax({
 	  url: url,
 	  type:'GET',
 	  dataType:'JSON',
@@ -13,5 +13,5 @@ function readJSON(url, callback) {
 	  error: function(msg) {
 		var a = 0;
 	  }
-	});
+	});*/
 }
