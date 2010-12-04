@@ -10,3 +10,13 @@ function readJSON(url, callback) {
 	  success: callback
 	});
 }
+
+function readXML(url, callback) {	 
+	
+	$.ajax({
+	  url: url,
+	  type:'GET',
+	  dataType:'xml',
+	  success: callback
+	});
+}
