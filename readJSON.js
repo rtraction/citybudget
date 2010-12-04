@@ -1,5 +1,9 @@
 function readJSON(url) {	 
-	$.getJSON(url, function(data) {
-	  return data;
-	});
+	var http = getHTTPObject();
+	http.open("GET", url, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			return http.responseText;
+		}
+	}
 }
