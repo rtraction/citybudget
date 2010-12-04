@@ -3,6 +3,8 @@ function readJSON(url, callback) {
 	  url: url,
 	  type:'GET',
 	  dataType:'jsonp',
-	  success: callback
+	  success: function(json) {
+		var a = 0;
+	  }
 	});
 }
