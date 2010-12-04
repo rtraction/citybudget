@@ -4,7 +4,7 @@ function readJSON(url, callback) {
 	  type:'GET',
 	  dataType:'jsonp',
 	  success: function(json) {
-		var a = 0;
+		return json;
 	  },
 	  error: function(msg) {
 		var a = 0;
