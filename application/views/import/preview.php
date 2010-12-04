@@ -18,6 +18,11 @@
 				print '<tr>';
 				
 				$cell_count=0;
+				if($row_count == 0){
+					print '<th><p>Count</p></th>';
+				}else{
+					print '<th><p>'.$row_count.'</p></th>';
+				}
 				foreach($row as $cell){
 					
 					//header row
