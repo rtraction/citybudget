@@ -7,14 +7,20 @@ function readJSON(url) {
 	  xhr = new XMLHttpRequest();    // Other browsers.
 	}
 
-	xhr.open("GET", url, true);
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			if(xhr.status  == 200) {
-				return xhr.responseText;
-			}
-			else {
+	try {
+		xhr.open("GET", url, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if(xhr.status  == 200) {
+					return xhr.responseText;
+				}
+				else {
+					return "failed";
+				}
 			}
 		}
+	}
+	catch(err) {
+		return "failed";
 	}
 }
