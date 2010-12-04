@@ -1,16 +1,8 @@
 <?php
+require APPPATH.'/libraries/REST_Controller.php';
 
-class Api extends Controller {
+class Api extends REST_Controller {
 
-	function Api()
-	{
-		parent::Controller();	
-	}
-	
-	function index()
-	{
-		$this->load->view('welcome_message');
-	}
 	
 	/* 
 	 * RESPONSE
@@ -26,7 +18,8 @@ class Api extends Controller {
 	 *     -...
 	 *
 	 */
-function budget($year = 0, $org = 0,/* $program = '',*/ $format = 'json'){
+/*
+function budget($year = 0, $org = 0, $program = '', $format = 'json'){
 		$data['format'] = $format;
 		//$year is required.
 		if((int)$year == 0){
@@ -36,28 +29,38 @@ function budget($year = 0, $org = 0,/* $program = '',*/ $format = 'json'){
 			$data['data'] = $this->Budget->get_budget($year, $org);
 			$this->load->view('api', $data);
 		}
-	}
+	}*/
 	
-	function listing($year='', $item='', $format = 'json'){
-		$data['format'] = $format;
-		
-		//If no valid year is printed, show some instructions for this function.
-		if((int)$year == 0){
-			//load a view that explains how to use this API call
-		}else{
-	 		switch($item){
-				case 'organizations':
-					$data['data'] = $this->Budget->get_organizations();
-					break;
-				default:
-					//show all available budget years
-					
-					
-
-			}
-		}
-		$this->load->view('api', $data);
-	}
+	function budget_get(){
+		if(!$this->get('year')){
+        	$this->response(array('error' => 'You must chose a year.'), 400);
+        	
+        }else{
+	        
+        	$budget = $this->Budget->get_budget($this->get('year'));
+	    	
+	        if($budget){
+	            $this->response($budget, 200); // 200 being the HTTP response code
+	        }else{
+	            $this->response(array('error' => 'User could not be found'), 404);
+	        }
+        }
+    }/*
+    function list_get(){
+		if(!$this->get('year')){
+        	$this->response(array('error' => 'You must chose a year.'), 400);
+        	
+        }else{
+	        
+        	$list = $this->Budget->get_budget($this->get('year'));
+	    	
+	        if($budget){
+	            $this->response($budget, 200); // 200 being the HTTP response code
+	        }else{
+	            $this->response(array('error' => 'User could not be found'), 404);
+	        }
+        }    	
+    }*/
 }
 
 /* End of file welcome.php */

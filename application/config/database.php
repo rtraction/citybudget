@@ -37,10 +37,10 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "";
-$db['default']['password'] = "";
-$db['default']['database'] = "";
+$db['default']['hostname'] = "192.168.144.30";
+$db['default']['username'] = "ldnbudget";
+$db['default']['password'] = "rtract1on";
+$db['default']['database'] = "ldnbudget";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
