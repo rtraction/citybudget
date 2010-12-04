@@ -51,13 +51,16 @@ code {
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
 
 <p>Get the budget for a specific organization/department for a year:</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/2'); ?>"><?php echo site_url(); ?>api/budget/<strong>year/2010/org/2</strong></a></code>
+<code><a href="<?php echo site_url('api/budget/year/2010/org/662'); ?>"><?php echo site_url(); ?>api/budget/<strong>year/2010/org/662</strong></a></code>
 
 <p>In the last example, you passed an organization id to the api. This probably makes you want a list of organization ids. That's here:</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/2'); ?>"><?php echo site_url(); ?>api/budget/<strong>year/2010/org/2</strong></a></code>
+<code><a href="<?php echo site_url('api/list/type/orgs'); ?>"><?php echo site_url(); ?>api/<strong>list/type/orgs</strong></a></code>
+
+<p>You can also list the years and if we currently have approved and/or actual numbers:</p>
+<code><a href="<?php echo site_url('api/list/type/years'); ?>"><?php echo site_url(); ?>api/<strong>list/type/years</strong></a></code>
 
 <p>BUT WHAT ABOUT JSON!? I hear ya! Just add /format/json to any api request.</p>
-<code><a href="<?php echo site_url('api/budget/year/2010/org/2/format/json'); ?>"><?php echo site_url(); ?>api/budget/year/2010/org/2/<strong>format/json</strong></a></code>
+<code><a href="<?php echo site_url('api/budget/year/2010/org/662/format/json'); ?>"><?php echo site_url(); ?>api/budget/year/2010/org/662/<strong>format/json</strong></a></code>
 
 
 <p>If you have any questions feel free to contact <a href="mailto:gavin.blair+citybudget@rtraction.com">Gavin Blair</a>.</p>
