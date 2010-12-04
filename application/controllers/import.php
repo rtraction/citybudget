@@ -26,6 +26,8 @@ class Import extends Controller {
 		 */
 		
 		$data=array();
+		$data['title'] = "Importing CSV data";
+		$this->load->view('header', $data);
 		
 		//These are the expected rows in the CSV file.
 		$data['th'] = array(
@@ -54,20 +56,22 @@ class Import extends Controller {
 			
 		}else if(isset($_POST['approve'])){
 			$budget = $_POST['budget'];
-			$uses = array();
 			foreach($budget[0] as $key => $time){
 				/*ORGANIZATION ID*/				
 					//get it if the org exists
 					$org = $this->Budget->get_organization_id($budget[1][$key]);
-					if(is_int($org)){
-						$org = $org['$budget[1][$key]'];
-					//set it if it's a new org	
-					}else{
-						$org = $this->Budget->set_organization_id($budget[1][$key]);
+					
+					if(!$org){
+						$org = $this->Budget->set_organization($budget[1][$key]);
+						$messages[] = array('message'=>'Creating the organization id: '.$org.' for "'.$budget[1][$key].'"');
+						if(!$org){
+							$messages[] = array('error'=>'Creating the organization id: '.$org.' for "'.$budget[1][$key].'"');
+						}
+							
 					}
-				
+									
 				/*GROUPING*/
-					if($budget[2][$key] != '' AND  $budget[2][$key] != '- none -'){
+					if($budget[2][$key] != '' && $budget[2][$key] != '- none -'){
 						$group = trim($budget[2][$key]);
 					}else{
 						$group = '';
@@ -79,67 +83,39 @@ class Import extends Controller {
 				$budgets = array();
 					
 				/*2008 actual*/
-					$budget = $this->Budget->get_budget_id($data['th'][4]);
-					//get the budget id, if this one exists
-					if(is_int($budget)){
-						$budgets[$budget] = (int)trim($budget[4][$key]);
-					//set it if it's a new budget	
-					}else{
-						$budget[$this->Budget->set_budget_id($data['th'][4])] = (int)trim($budget[4][$key]);
-					}
+					$budgets[]=array('year'=>2008, 'type'=>'actual', 'amount'=>(int)trim($budget[4][$key]));
 				
 				/*2009 approved*/
-					$budget = $this->Budget->get_budget_id($data['th'][5]);
-					//get the budget id, if this one exists
-					if(is_int($budget)){
-						$budgets[$budget] = (int)trim($budget[5][$key]);
-					//set it if it's a new budget	
-					}else{
-						$budget[$this->Budget->set_budget_id($data['th'][5])] = (int)trim($budget[5][$key]);
-					}
+					$budgets[]=array('year'=>2009, 'type'=>'approved', 'amount'=>(int)trim($budget[5][$key]));
 					
 				/*2009 revised */
-					$budget = $this->Budget->get_budget_id($data['th'][6]);
-					//get the budget id, if this one exists
-					if(is_int($budget)){
-						$budgets[$budget] = (int)trim($budget[6][$key]);
-					//set it if it's a new budget	
-					}else{
-						$budget[$this->Budget->set_budget_id($data['th'][6])] = (int)trim($budget[6][$key]);
-					}
+					$budgets[]=array('year'=>2009, 'type'=>'actual', 'amount'=>(int)trim($budget[6][$key]));
 
 				/*2010 approved*/
-					$budget = $this->Budget->get_budget_id($data['th'][7]);
-					//get the budget id, if this one exists
-					if(is_int($budget)){
-						$budgets[$budget] = (int)trim($budget[7][$key]);
-					//set it if it's a new budget	
-					}else{
-						$budget[$this->Budget->set_budget_id($data['th'][7])] = (int)trim($budget[7][$key]);
-					}
-				/*INSERT INTO DB*/
-				foreach($budgets as $budget_id=>$amount){
-					$this->Budget->set_use_id($program, $amount, $group, $org, $budget_id);
-				}		
-			}
-			
-			print '<pre>';
-			print_r($_POST);
-			
-			
+					$budgets[]=array('year'=>2010, 'type'=>'approved', 'amount'=>(int)trim($budget[7][$key]));
 
+				/*INSERT INTO DB*/
+				foreach($budgets as $bud){
+					$success = $this->Budget->set_amount($program, $bud['amount'], $group, $org, $bud['year'], $bud['type']);
+					if($success){
+						$messages[] = array('message'=>'Inserted '.$program.' for '.$bud['year']);
+					}else{
+						$messages[] = array('error'=>'Failed to insert '.$program.' for '.$bud['year']);
+					}
+				}		
+				$data['messages'] = $messages;
+
+			}	
 			
-			print_r($orgs);
-			print_r($budgets);
-			
-			print '</pre>';
-			
+			$this->load->view('import/success', $data);
 			
 		/*Step 1, upload a CSV file*/	
 		}else{	
 			//display form to submit CSV file
 			$this->load->view('import/import', $data);
 		}
+		
+		$this->load->view('footer', $data);
 		
 	}
 }
