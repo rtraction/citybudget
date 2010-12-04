@@ -6,7 +6,7 @@ function readJSON(url, callback) {
 	$.ajax({
 	  url: url,
 	  type:'GET',
-	  dataType:'json',
+	  dataType:'jsonp',
 	  success: function(data){
 		alert(data);
 	  }
