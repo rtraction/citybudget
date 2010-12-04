@@ -1,3 +1,5 @@
 function readJSON(url, callback) {	 
-	$.getJSON(url, callback(json));
+	$.getJSON(url, function(json) {
+		callback(json);
+	});
 }
