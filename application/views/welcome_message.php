@@ -79,22 +79,12 @@ code a:focus, code a:hover{
 <a href="<?php echo site_url('api/budget/year/2010/org/803/format/jsonp'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/803/<strong>format/jsonp</strong></a>
 </code>
 <p>Want to pull the JSON info dynamically? Something like this should work for you (we're using JQuery here):</p>
-<code><em>The builtin function short hand way:</em>
+<em>//It involves two steps -- the ajax call and the call back function:</em>
 $.ajax({
 	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/jsonp');?>&#39;,
 	type:&#39;GET&#39;,
-	dataType:&#39;jsonp&#39;
-}, function (budget){<em>
-	/* replace this with your functionality */</em>
-	console.log(budget);
-});</code>
-<code><em>//The 2 part, hook into an external function way:</em>
-$.ajax({
-	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/jsonp');?>&#39;,
-	type:&#39;GET&#39;,
-	data:&#39;callback=<strong>abc</strong>&#39;,
 	dataType:&#39;jsonp&#39;,
-	success: abc
+	success: <strong>abc</strong>
 });
 
 <em>//the JSON is passed as a parameter to your callback function</em>
