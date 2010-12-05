@@ -50,10 +50,13 @@ class Api extends REST_Controller {
 	        	case 'organizations':
 	        		$list = $this->Budget->get_organizations();
 	        		break;
+	        	case 'year':
+	        	case 'years':
+	        		$list = $this->Budget->get_years();
+	        		break;
 	        	default:
-	        		$list = null;	        		
+	        		$list = false;	        		
 	        }
-	        
         	if($list){
 	            $this->response($list, 200); // 200 being the HTTP response code
 	        }else{

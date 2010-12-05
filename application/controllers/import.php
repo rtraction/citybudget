@@ -56,7 +56,15 @@ class Import extends Controller {
 			
 		}else if(isset($_POST['approve'])){
 			$budget = $_POST['budget'];
-			foreach($budget[0] as $key => $time){
+			/*
+			print '<pre>';
+			print_r($budget); die;*/
+			foreach($budget[1] as $key => $time){
+				if(trim($budget[1][$key]) == ''){
+					print_r($budget);
+					die('here');
+					continue;
+				}
 				/*ORGANIZATION ID*/				
 					//get it if the org exists
 					$org = $this->Budget->get_organization_id($budget[1][$key]);
@@ -65,9 +73,8 @@ class Import extends Controller {
 						$org = $this->Budget->set_organization($budget[1][$key]);
 						$messages[] = array('message'=>'Creating the organization id: '.$org.' for "'.$budget[1][$key].'"');
 						if(!$org){
-							$messages[] = array('error'=>'Creating the organization id: '.$org.' for "'.$budget[1][$key].'"');
+							$messages[] = array('error'=>'Error creating the organization id: '.$org.' for "'.$budget[1][$key].'"');
 						}
-							
 					}
 									
 				/*GROUPING*/
@@ -83,16 +90,44 @@ class Import extends Controller {
 				$budgets = array();
 					
 				/*2008 actual*/
-					$budgets[]=array('year'=>2008, 'type'=>'actual', 'amount'=>(int)trim($budget[4][$key]));
+					$amount = trim($budget[4][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2008, 'type'=>'actual', 'amount'=>$amount);
 				
 				/*2009 approved*/
-					$budgets[]=array('year'=>2009, 'type'=>'approved', 'amount'=>(int)trim($budget[5][$key]));
+					$amount = trim($budget[5][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2009, 'type'=>'approved', 'amount'=>$amount);
 					
 				/*2009 revised */
-					$budgets[]=array('year'=>2009, 'type'=>'actual', 'amount'=>(int)trim($budget[6][$key]));
+					$amount = trim($budget[6][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2009, 'type'=>'actual', 'amount'=>$amount);
 
 				/*2010 approved*/
-					$budgets[]=array('year'=>2010, 'type'=>'approved', 'amount'=>(int)trim($budget[7][$key]));
+					$amount = trim($budget[7][$key]);
+					if(strpos($amount, '-') === 0){
+						$amount = (int)str_replace('-', '', $amount);
+						$amount = $amount * -1000;
+					}else{
+						$amount = (int)$amount*1000;
+					}
+					$budgets[]=array('year'=>2010, 'type'=>'approved', 'amount'=>$amount);
 
 				/*INSERT INTO DB*/
 				foreach($budgets as $bud){

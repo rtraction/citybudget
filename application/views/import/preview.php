@@ -1,6 +1,7 @@
 <style>
 .error{
 	color:red;
+	border:thin red solid;
 }
 </style>
 
@@ -18,6 +19,11 @@
 				print '<tr>';
 				
 				$cell_count=0;
+				if($row_count == 0){
+					print '<th><p>Count</p></th>';
+				}else{
+					print '<th><p>'.$row_count.'</p></th>';
+				}
 				foreach($row as $cell){
 					
 					//header row
@@ -36,7 +42,11 @@
 
 					//content rows
 					}else{
-						print '<td>'.$cell.'</td>';
+						if($cell == ''){
+							print '<td class="error">&nbsp;</td>';
+						}else{
+							print '<td>'.$cell.'</td>';
+						}
 						
 						//if it's an expected row, make a hidden field for processing
 						if(isset($th[$cell_count])){
