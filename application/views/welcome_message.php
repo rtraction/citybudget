@@ -56,7 +56,7 @@ code a:focus, code a:hover{
 
 <h1>Welcome to the City Budget API!</h1>
 
-<p>These are the way to use the api right now.</p>
+<p>These are the way to use the API right now.</p>
 
 <p>Get the budget for a year:</p>
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
