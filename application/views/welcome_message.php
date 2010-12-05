@@ -56,7 +56,7 @@ code a:focus, code a:hover{
 
 <h1>Welcome to the City Budget API!</h1>
 
-<p>These are the way to use the api right now.</p>
+<p>These are the way to use the API right now.</p>
 
 <p>Get the budget for a year:</p>
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
@@ -78,10 +78,19 @@ code a:focus, code a:hover{
 <em>//JSONP friendly</em>
 <a href="<?php echo site_url('api/budget/year/2010/org/803/format/jsonp'); ?>"><?php echo site_url(); ?>/api/budget/year/2010/org/803/<strong>format/jsonp</strong></a>
 </code>
-<p>Want to pull the JSON info dynamically? Something like this should work for you:</p>
-<code><em>//get the json from the api</em>
+<p>Want to pull the JSON info dynamically? Something like this should work for you (we're using JQuery here):</p>
+<code><em>The builtin function short hand way:</em>
 $.ajax({
-	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/json');?>&#39;,
+	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/jsonp');?>&#39;,
+	type:&#39;GET&#39;,
+	dataType:&#39;jsonp&#39;
+}, function (budget){<em>
+	/* replace this with your functionality */</em>
+	console.log(budget);
+});</code>
+<code><em>//The 2 part, hook into an external function way:</em>
+$.ajax({
+	url:&#39;<?php print site_url('api/budget/year/2010/org/803/format/jsonp');?>&#39;,
 	type:&#39;GET&#39;,
 	data:&#39;callback=<strong>abc</strong>&#39;,
 	dataType:&#39;jsonp&#39;,
@@ -90,10 +99,8 @@ $.ajax({
 
 <em>//the JSON is passed as a parameter to your callback function</em>
 function <strong>abc</strong>(budget){<em>
-	/*
-	 * your functionality
-	 *
-	 */</em>
+	/* replace this with your functionality */</em>
+	console.log(budget);
 }
 </code>
 
