@@ -3,3 +3,5 @@ system/logs/*
 application/config/config.php
 
 application/config/database.php
+
+pull.php
