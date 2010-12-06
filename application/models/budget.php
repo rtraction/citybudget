@@ -27,8 +27,8 @@ class Budget extends Model {
 		$return = array();
 		if($query->num_rows() > 0) {
 			foreach($query->result() as $row){
-				if(!isset($return[$row->organization_id])){
-					$return[$row->organization_id] = array(
+				if(!isset($return['organization'.$row->organization_id])){
+					$return['organization'.$row->organization_id] = array(
 						'name' => $row->organization,
 						'id' => $row->organization_id,
 						'total_approved'=>0,
@@ -37,7 +37,7 @@ class Budget extends Model {
 					);
 				}
 				
-				$return[$row->organization_id]['budget_items'][] = array(
+				$return['organization'.$row->organization_id]['budget_items'][] = array(
 					'program'=>$row->program,
 					'grouping'=>$row->grouping,
 					'approved'=>$row->approved,
@@ -48,10 +48,10 @@ class Budget extends Model {
 				$actual = (int)$row->actual;
 				
 				if($approved > 0){
-					$return[$row->organization_id]['total_approved'] += $approved;
+					$return['organization'.$row->organization_id]['total_approved'] += $approved;
 				}
 				if($actual > 0){
-					$return[$row->organization_id]['total_actual'] += $actual;
+					$return['organization'.$row->organization_id]['total_actual'] += $actual;
 				}
 				
 			}

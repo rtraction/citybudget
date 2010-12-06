@@ -1,5 +1,3 @@
-<html>
-  <head>
 	<style type="text/css">  		
 		div{
   			float:left;
@@ -105,11 +103,7 @@ function selectHandler(){
 
     
     </script>
-  </head>
 
-  <body>
     <div id="chart_div"></div>
     <div id="chart2_div"></div>
     <div id="chart3_div"></div>
-  </body>
-</html>
