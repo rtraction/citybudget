@@ -62,13 +62,13 @@ function abc(budget){
     });
 
     chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(approved2009, {width: 600, height: 400, title: 'Approved Budget 2009'});
+    chart.draw(approved2009, {width: 380, height: 250, title: 'Approved Budget 2009'});
 
     chart2 = new google.visualization.PieChart(document.getElementById('chart2_div'));
-    chart2.draw(actual2009, {width: 600, height: 400, title: 'Actual Budget 2009'});
+    chart2.draw(actual2009, {width: 350, height: 250, title: 'Actual Budget 2009', legend: 'none'});
     
     chart3 = new google.visualization.ColumnChart(document.getElementById('chart3_div'));
-    chart3.draw(data, {width: 1200, height: 240, title: 'Approved and Actual 2009 Budget',
+    chart3.draw(data, {width: 740, height: 240, title: 'Approved and Actual 2009 Budget',
                           hAxis: {title: 'Organization', titleTextStyle: {color: 'red'}}
                          });
                          

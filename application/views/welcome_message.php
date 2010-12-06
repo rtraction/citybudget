@@ -5,6 +5,8 @@
 
 <p>We've inputted this information into a database and are providing RESTful access to it through this API. This page contains instructions for using the API.</p>
 
+<p><a href="<?php echo site_url(); ?>/demos">Here</a> are some demos of API usage.</p>
+
 <p>Get the budget for a year:</p>
 <code><a href="<?php echo site_url('/api/budget/year/2010'); ?>"><?php echo site_url(); ?>/api/budget/<strong>year/2010</strong></a></code>
 
