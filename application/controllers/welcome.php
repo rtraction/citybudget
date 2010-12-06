@@ -9,7 +9,9 @@ class Welcome extends Controller {
 	
 	function index()
 	{
-		$this->load->view('welcome_message');
+		$data = array();
+		$data['title'] = "Welcome to the London Ontario City Budget API";
+		$this->load->view('welcome_message', $data);
 	}
 }
 
